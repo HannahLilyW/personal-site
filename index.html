@@ -12,7 +12,7 @@
   <body onload="init()">
     <div class="grid-container">
         <div class="box" id="bio">
-            <canvas class="fishtank" id="bioFishTank"></canvas>
+            <canvas class="fishtank" id="bioFishTank" moz-opaque></canvas>
             <h1>Hannah Lily Watsky</h1>
             <p>software engineer</p>
             <p>get in touch:</p>
@@ -21,9 +21,6 @@
         <div class="box" id="whiskeyChaser" onclick="navigateToWhiskeyChaser()">
             <h1>Whiskey Chaser</h1>
             <img src="whiskey.png">
-            <div class="bottom">
-                <a class="attrib-link" href="https://www.flaticon.com/free-icons/whiskey" title="whiskey icons">Whiskey icons created by monkik - Flaticon</a>
-            </div>
         </div>
         <div class="box" id="westernWager" onclick="navigateToWesternWager()">
             <h1>WESTERN WAGER</h1>
@@ -34,6 +31,9 @@
             <p>hi, welcome to my personal website!</p>
             <p>here you can find links to my projects.</p>
         </div>
+    </div>
+    <div class="credits">
+      <a class="attrib-link" href="https://www.flaticon.com/free-icons/whiskey" title="whiskey icons">Whiskey icons created by monkik - Flaticon</a>
     </div>
   </body>
 </html>

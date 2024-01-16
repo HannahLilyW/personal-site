@@ -88,65 +88,71 @@ img {
 }
 
 .attrib-link {
+    opacity: 10%;
+}
+
+.attrib-link:hover {
     opacity: 20%;
-    &:hover {
-        opacity: 40%;
-    }
 }
 
 .bottom {
     position: absolute;
     bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 0%);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
 }
 
 #bio {
     background-color: #000070;
+}
 
-    &:hover {
-        background-color: #000080;
-        box-shadow: 0px 0px 30px 2px rgba(0,0,255,0.5);
-    }
+#bio:hover {
+    background-color: #000080;
+    box-shadow: 0px 0px 30px 2px rgba(0,0,255,0.5);
 }
 
 #about {
     background-color: #000070;
+}
 
-    &:hover {
-        background-color: #000080;
-        box-shadow: 0px 0px 30px 2px rgba(0,0,255,0.5);
-    }
+#about:hover {
+    background-color: #000080;
+    box-shadow: 0px 0px 30px 2px rgba(0,0,255,0.5);
 }
 
 #whiskeyChaser {
     background-color: #dddddd;
     cursor: pointer;
-    h1, a {
-        color: black;
-    }
+}
 
-    &:hover {
-        background-color: #eeeeee;
-        box-shadow: 0px 0px 30px 2px rgba(255,255,255,0.5);
-    }
+#whiskeyChaser h1, #whiskeyChaser a, #whiskeyChaser p {
+    color: black;
+}
+
+#whiskeyChaser:hover {
+    background-color: #eeeeee;
+    box-shadow: 0px 0px 30px 2px rgba(255,255,255,0.5);
 }
 
 #westernWager {
     background-color: #342211;
     cursor: pointer;
+}
 
-    &:hover {
-        background-color: #392716;
-        box-shadow: 0px 0px 30px 2px rgba(150,125,100,0.5);
-    }
+#westernWager:hover {
+    background-color: #392716;
+    box-shadow: 0px 0px 30px 2px rgba(150,125,100,0.5);
+}
 
-    h1 {
-        font-family: rye, sans-serif;
-    }
+#westernWager h1 {
+    font-family: rye, sans-serif;
+}
 
-    svg {
-        height: 50%;
-        width: 50%;
-    }
+#westernWager svg {
+    height: 50%;
+    width: 50%;
 }

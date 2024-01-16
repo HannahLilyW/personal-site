@@ -1,18 +1,18 @@
 let fishes = [
     {
         // urls to images
-        anal_fin_left: 'fishes/anal_fin_left.png',
-        anal_fin_right: 'fishes/anal_fin_right.png',
-        body_left: 'fishes/body_left.png',
-        body_right: 'fishes/body_right.png',
-        dorsal_fin_left: 'fishes/dorsal_fin_left.png',
-        dorsal_fin_right: 'fishes/dorsal_fin_right.png',
-        pectoral_fin_left: 'fishes/pectoral_fin_left.png',
-        pectoral_fin_right: 'fishes/pectoral_fin_right.png',
-        pelvic_fin_left: 'fishes/pelvic_fin_left.png',
-        pelvic_fin_right: 'fishes/pelvic_fin_right.png',
-        tail_left: 'fishes/tail_left.png',
-        tail_right: 'fishes/tail_right.png',
+        anal_fin_left: 'fishes/anal_fin_left_small.png',
+        anal_fin_right: 'fishes/anal_fin_right_small.png',
+        body_left: 'fishes/body_left_small.png',
+        body_right: 'fishes/body_right_small.png',
+        dorsal_fin_left: 'fishes/dorsal_fin_left_small.png',
+        dorsal_fin_right: 'fishes/dorsal_fin_right_small.png',
+        pectoral_fin_left: 'fishes/pectoral_fin_left_small.png',
+        pectoral_fin_right: 'fishes/pectoral_fin_right_small.png',
+        pelvic_fin_left: 'fishes/pelvic_fin_left_small.png',
+        pelvic_fin_right: 'fishes/pelvic_fin_right_small.png',
+        tail_left: 'fishes/tail_left_small.png',
+        tail_right: 'fishes/tail_right_small.png',
 
         // image elements
         bodyImageLeft: null,
@@ -28,9 +28,9 @@ let fishes = [
         analFinImageLeft: null,
         analFinImageRight: null,
 
-        pectoral_fin_x: 359,  // x of base of pectoral fin
+        pectoral_fin_x: 90,  // x of base of pectoral fin
 
-        size: 1000, // in pixels
+        size: 250, // in pixels
 
         // x and y of top left pixel of fish's square
         x: 0,
@@ -100,9 +100,9 @@ let fishes = [
         analFinImageLeft: null,
         analFinImageRight: null,
 
-        pectoral_fin_x: 359,  // x of base of pectoral fin
+        pectoral_fin_x: 90,  // x of base of pectoral fin
 
-        size: 1200, // in pixels
+        size: 300, // in pixels
 
         // x and y of top left pixel of fish's square
         x: 0,
@@ -221,7 +221,7 @@ const drawFish = function (fish) {
     let pelvicFinSkew = Math.abs(fish.pelvicFinAnimation) * 2;
     let analFinSkew = Math.abs(fish.analFinAnimation) * 2;
     let pectoralFinScale = Math.abs(fish.pectoralFinAnimation) + 1 - 0.6;
-    const actual_pectoral_fin_x = (1024 - fish.pectoral_fin_x) * (fish.size / 2048);
+    const actual_pectoral_fin_x = (256 - fish.pectoral_fin_x) * (fish.size / 512);
     let pectoralFinTranslate = (actual_pectoral_fin_x - actual_pectoral_fin_x * pectoralFinScale) * scale;
     let right = true;
     if (fish.vx < 0) {
@@ -462,9 +462,9 @@ const initCanvas = function () {
     canvas.width = parent.offsetWidth;
     canvas.height = parent.offsetHeight;
 
-    scale = canvas.height / 2048;
+    scale = canvas.height / 512;
 
-    ctx = canvas.getContext('2d');
+    ctx = canvas.getContext('2d', { alpha: false });
 }
 
 const init = function () {
