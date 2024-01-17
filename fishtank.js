@@ -102,7 +102,7 @@ let fishes = [
 
         pectoral_fin_x: 90,  // x of base of pectoral fin
 
-        size: 300, // in pixels
+        size: 250, // in pixels
 
         // x and y of top left pixel of fish's square
         x: 0,
