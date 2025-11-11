@@ -30,7 +30,7 @@ let fishes = [
 
         pectoral_fin_x: 90,  // x of base of pectoral fin
 
-        size: 250, // in pixels
+        size: 150, // in pixels
 
         // x and y of top left pixel of fish's square
         x: 0,
@@ -51,7 +51,7 @@ let fishes = [
         spinDirection: 1, // 1 if spinning right, -1 if spinning left
 
         // 1 to 10
-        maxSpeed: 5,
+        maxSpeed: 2,
 
         // How likely the fish is to change speed (1=10% likely to 9=90% likely)
         changeSpeedLikelihood: 5,
@@ -102,7 +102,7 @@ let fishes = [
 
         pectoral_fin_x: 90,  // x of base of pectoral fin
 
-        size: 250, // in pixels
+        size: 125, // in pixels
 
         // x and y of top left pixel of fish's square
         x: 0,
@@ -123,7 +123,7 @@ let fishes = [
         spinDirection: 1, // 1 if spinning right, -1 if spinning left
 
         // 1 to 10
-        maxSpeed: 5,
+        maxSpeed: 2,
 
         // How likely the fish is to change speed (1=10% likely to 9=90% likely)
         changeSpeedLikelihood: 5,
@@ -145,16 +145,42 @@ let fishes = [
     }
 ]
 
+let bubbles = []
+for (let i = 0; i < 15; i++) {
+    bubbles.push([Math.random(), Math.random(), Math.random() - 0.5]) // initial x,y,x offset angle of bubble
+}
+
+let plants = [[], [], []]
+let heights = [10, 12, 15]
+for (let j = 0; j < heights.length; j++) {
+    for (let i = 0; i < heights[j]; i++) {
+        plants[j].push([Math.random(), randomChoice([-1, 1])])
+    }
+}
+let plantAngles = [-20, -10, -10];
+let plantDir = [1, 1, -1];
+let minPlantAngle = [-40,-20, -30];
+let maxPlantAngle = [-10,10, 0];
+let plantPosition = [[.20, .90], [.22, .91], [.21, .92]]
+
 let canvas = null;
 let parent = null;
 let ctx = null;
 let scale = null;
 
+function randomFloat(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+function randomChoice(arr) {
+    return arr[Math.floor(arr.length * Math.random())];
+}
+
 const changePosition = function (fish) {
     if (fish.vx != 0) {
         fish.lastVx = fish.vx;
     }
-    fish.x += fish.vx;
+    fish.x += fish.vx / 3;
     // Change y with angle
     fish.y -= Math.tan(fish.angle * Math.PI / 180) * fish.vx;
 }
@@ -196,8 +222,26 @@ const isReady = function (image) {
 }
 
 const drawBackground = function () {
-    ctx.fillStyle = "#000070";
+    const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    grad.addColorStop(0, "#202020");
+    grad.addColorStop(1, "#101010");
+    
+    ctx.fillStyle = grad;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+const drawForeground = function() {
+    ctx.save();
+    ctx.translate(canvas.width/3, canvas.height*2.2);
+    ctx.beginPath();
+    ctx.arc(0,0,canvas.width*1.5,0,2*Math.PI);
+    ctx.closePath();
+    const grad = ctx.createRadialGradient(0, 0, canvas.width*1.2, 0, 0, canvas.width * 1.5);
+    grad.addColorStop(0, '#201d15');
+    grad.addColorStop(1, '#99927f');
+    ctx.fillStyle=grad;
+    ctx.fill();
+    ctx.restore();
 }
 
 const drawFish = function (fish) {
@@ -448,8 +492,93 @@ const drawFishes = function () {
     })
 }
 
+const drawBubbles = function() {
+    for (let i = 0; i < bubbles.length; i++) {
+        radius = i * canvas.height / 300
+        ctx.save();
+        ctx.translate((bubbles[i][0] * canvas.width), bubbles[i][1] * canvas.height);
+        ctx.beginPath();
+        ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+        ctx.closePath();
+        const grad = ctx.createLinearGradient(0 - radius, 0, 0 + radius, 0);
+        grad.addColorStop(0, 'rgba(255,255,255,0.05)');
+        grad.addColorStop(1, 'rgba(255,255,255,0.01)');
+        ctx.fillStyle = grad;
+        ctx.fill();
+        ctx.restore();
+        bubbles[i][0] += bubbles[i][2] * 0.0025;
+        bubbles[i][1] -= Math.sqrt(i) * 0.002;
+        if (bubbles[i][1] < -0.1) {
+            bubbles[i][0] = Math.random() * 0.1 + 0.45;
+            bubbles[i][1] = 1;
+            bubbles[i][2] = Math.random() - 0.5;
+        }
+    }
+}
+
+const drawPlants = function() {
+    for (let i = 0; i < heights.length; i++) {
+        plant = plants[i]
+        ctx.save();
+        ctx.translate(canvas.width * plantPosition[i][0], canvas.height * plantPosition[i][1]);
+        ctx.rotate((.25 * plantAngles[i]) * Math.PI / 180);
+        for (let j = 0; j < plant.length; j++) {
+
+            // draw leaves
+            ctx.beginPath();
+            ctx.ellipse(
+                0,
+                0,
+                canvas.width/50,
+                canvas.width/100,
+                0,
+                0,
+                2*Math.PI
+            )
+            ctx.closePath();
+            ctx.fillStyle = 'rgba(84, 140, 83, .8)';
+            ctx.fill();
+            
+            // connect this node to last node
+            ctx.beginPath();
+            ctx.moveTo(0,0);
+            ctx.lineTo(0, (-1 * .05 * canvas.height));
+            ctx.closePath();
+            ctx.strokeStyle = '#11450d';
+            ctx.lineWidth = (plants[i].length - j) / 2;
+            ctx.stroke();
+            
+            ctx.translate(0, (-1 * .05 * canvas.height))
+            ctx.rotate(2 * plant[j][0] * Math.PI / 180);
+
+            plants[i][j][0] = plants[i][j][0] + plants[i][j][1] * Math.random() * .01;
+
+            if (plants[i][j][0] > 1 || plants[i][j][0] < -1) {
+                plants[i][j][1] = -plants[i][j][1];
+            }
+        }
+        if (plantAngles[i] < minPlantAngle[i]) {
+            plantAngles[i] = plantAngles[i] + 0.1
+            plantDir[i] = 1;
+            minPlantAngle[i] = randomFloat(-40, -20);
+            maxPlantAngle[i] = randomFloat(-10, 10);
+        } else if (plantAngles[i] > maxPlantAngle[i]) {
+            plantAngles[i] = plantAngles[i] - 0.1
+            plantDir[i] = -1;
+            minPlantAngle[i] = randomFloat(-40, -20);
+            maxPlantAngle[i] = randomFloat(-10, 10);
+        } else {
+            plantAngles[i] = plantAngles[i] + 0.1 * plantDir[i]
+        }
+        ctx.restore();
+    }
+}
+
 const draw = function () {
     drawBackground();
+    drawBubbles();
+    drawForeground();
+    drawPlants();
     drawFishes();
 
     window.requestAnimationFrame(draw);
