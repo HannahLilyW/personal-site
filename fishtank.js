@@ -237,8 +237,8 @@ const drawForeground = function() {
     ctx.arc(0,0,canvas.width*1.5,0,2*Math.PI);
     ctx.closePath();
     const grad = ctx.createRadialGradient(0, 0, canvas.width*1.2, 0, 0, canvas.width * 1.5);
-    grad.addColorStop(0, '#201d15');
-    grad.addColorStop(1, '#99927f');
+    grad.addColorStop(0, '#70685e');
+    grad.addColorStop(1, '#ccbfad');
     ctx.fillStyle=grad;
     ctx.fill();
     ctx.restore();
@@ -501,8 +501,8 @@ const drawBubbles = function() {
         ctx.arc(0, 0, radius, 0, 2 * Math.PI);
         ctx.closePath();
         const grad = ctx.createLinearGradient(0 - radius, 0, 0 + radius, 0);
-        grad.addColorStop(0, 'rgba(255,255,255,0.05)');
-        grad.addColorStop(1, 'rgba(255,255,255,0.01)');
+        grad.addColorStop(0, 'rgba(255,255,255,0.1)');
+        grad.addColorStop(1, 'rgba(255,255,255,0.02)');
         ctx.fillStyle = grad;
         ctx.fill();
         ctx.restore();
@@ -536,7 +536,7 @@ const drawPlants = function() {
                 2*Math.PI
             )
             ctx.closePath();
-            ctx.fillStyle = 'rgba(84, 140, 83, .8)';
+            ctx.fillStyle = 'rgba(101, 191, 92, .8)';
             ctx.fill();
             
             // connect this node to last node
@@ -544,7 +544,7 @@ const drawPlants = function() {
             ctx.moveTo(0,0);
             ctx.lineTo(0, (-1 * .05 * canvas.height));
             ctx.closePath();
-            ctx.strokeStyle = '#11450d';
+            ctx.strokeStyle = '#1a6913';
             ctx.lineWidth = (plants[i].length - j) / 2;
             ctx.stroke();
             

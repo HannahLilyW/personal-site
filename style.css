@@ -40,10 +40,12 @@ p {
     margin: 1vw;
     text-align: center;
     background: linear-gradient(0deg, #101010, #202020);
+    overflow: hidden;
 }
 
 .box:hover {
-    box-shadow: 0px 0px 30px 2px rgba(100,100,100,0.3);
+    box-shadow: 0px 0px 30px 2px rgba(255,255,255,0.3);
+    filter: brightness(115%);
 }
 
 img {
@@ -92,14 +94,6 @@ img {
     border-radius: inherit;
 }
 
-.attrib-link {
-    opacity: 10%;
-}
-
-.attrib-link:hover {
-    opacity: 20%;
-}
-
 .bottom {
     position: absolute;
     bottom: 0;
@@ -113,6 +107,8 @@ img {
 
 #westernWager {
     cursor: pointer;
+    background-image: url('wood4.jpg');
+    background-size: cover;
 }
 
 #westernWager h1 {
@@ -124,12 +120,53 @@ img {
     width: 50%;
 }
 
+.card-container {
+    position: relative;
+    height: 1000px;
+}
+
+.card {
+    border-radius: 5.5%;
+    position: absolute;
+    height: auto;
+    top: 5%;
+    left: 5%;
+}
+
+#card41 {
+    rotate: -5deg;
+}
+
+#card31 {
+    left: 15%;
+    rotate: 10deg;
+}
+
+#card21 {
+    left: 25%;
+    rotate: 25deg;
+}
+
+#card11 {
+    left: 35%;
+    rotate: 40deg;
+}
+
+#card0 {
+    left: 45%;
+    rotate: 55deg;
+}
+
+
+
 #crossFP {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
     cursor: pointer;
+    background-image: url('sprinkler3.jpg');
+    background-size: cover;
 }
 
 #treeGenerator {
@@ -138,6 +175,7 @@ img {
 }
 
 #headerCross {
+    margin-top: 90%;
     font-size: 40px;
 }
 
