@@ -6,12 +6,12 @@
     <link rel="icon" href="goldfish.ico">
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="fishtank.js"></script>
-    <script type="text/javascript" src="links.js"></script>
+    <script type="text/javascript" src="fishtank.js" defer></script>
+    <script type="text/javascript" src="links.js" defer></script>
     <title>Hannah Lily Watsky</title>
 </head>
 
-<body onload="init()">
+<body>
     <div class="grid-container">
         <div class="box" id="bio">
             <canvas class="fishtank" id="bioFishTank" moz-opaque></canvas>
@@ -20,10 +20,10 @@
             <p>get in touch:</p>
             <p><a href="mailto:hannahlily24@gmail.com">hannahlily24@gmail.com</a></p>
         </div>
-        <div class="box" id="treeGenerator" onclick="navigateToTreeGenerator()">
+        <div class="box" id="treeGenerator">
             <h1 id="headerTreeGen">Tree Generator</h1>
         </div>
-        <div class="box" id="westernWager" onclick="navigateToWesternWager()">
+        <div class="box" id="westernWager">
             <h1>WESTERN WAGER</h1>
             <div class="card-container">
                 <img class="card" id="card41" src="cards/card41.PNG">
@@ -33,7 +33,7 @@
                 <img class="card" id="card0" src="cards/card0.PNG">
             </div>
         </div>
-        <div class="box" id="crossFP" onclick="navigateToCrossFP()">
+        <div class="box" id="crossFP">
             <h1>
                 <div id="headerCross">
                     CROSS

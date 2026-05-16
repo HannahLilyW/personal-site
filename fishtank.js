@@ -643,3 +643,5 @@ const init = function () {
 
     window.requestAnimationFrame(draw);
 }
+
+window.addEventListener('load', init);
